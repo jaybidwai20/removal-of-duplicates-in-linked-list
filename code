@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+#include <iostream>
+using namespace std;
+class node
+{
+    public:
+    int data;
+    node* next;
+};
+void removeduplicates(node * head)
+{
+    node* current=head;
+    
+    node* next_next;
+    
+    if(current==NULL)
+    {
+        return ;
+    }
+    while(current->next!=NULL)
+    {
+        
+        if(current->data==current->next->data)
+        {
+            next_next=current->next->next;
+            
+            free(current->next);
+            
+            current->next=next_next;
+            
+        }
+        else
+        {
+            current=current->next;
+        }
+   
+    }
+    
+}
+ void push(node** head_ref,int x)
+ {
+     node* new_node=new node();
+     new_node->data=x;
+     new_node->next=(*head_ref);
+     
+    ( *head_ref) =new_node;
+     
+     
+ }
+ void printlist(node *head)
+ {
+     while(head!=NULL)
+     {
+         cout<<head->data<<" ";
+         head=head->next;
+         
+     }
+ }
+
+
+int main()
+{
+    node* head=NULL;
+    
+push(&head,20);
+push(&head,13);
+push(&head,13);
+push(&head,11);
+push(&head,11);
+push(&head,11);
+cout<<"before deleting the duplicates"<<endl;
+  printlist(head);
+  
+  removeduplicates(head);
+  
+  cout<<"\n after deleting the duplicates"<<endl;
+  printlist(head);
+  
+  
+  
+  
+}
